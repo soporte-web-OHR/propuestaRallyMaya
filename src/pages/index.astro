@@ -25,9 +25,11 @@ const metadata = {
       actions={[
         {
           variant: 'primary',
-          text: 'Ver Presupuesto',
-          href: '#pricing',
-          icon: 'tabler:calculator',
+          text: 'Descargar Cotización',
+          href: '/docs/cotizacionRallyMaya.pdf',
+          icon: 'tabler:download',
+          target: '_blank',
+          download: true,
         },
         {
           text: 'Ver portafolio',
@@ -44,9 +46,25 @@ const metadata = {
 
       <Fragment slot="subtitle">
         <span class="hidden sm:inline">
-          Propuesta integral para crear una plataforma web moderna, funcional y orientada a resultados para el Rally Maya
-          <span class="font-semibold">Desde el diseño hasta el desarrollo completo</span> con todas las funcionalidades requeridas.
+          Cotización técnica unificada para crear una plataforma web moderna y funcional para el Rally Maya México.
+          <span class="font-semibold">Diseño UX/UI + Desarrollo completo</span> con todas las funcionalidades requeridas.
         </span>
+        <div class="mt-4 text-center">
+          <div class="inline-flex items-center space-x-6 bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">$238,525</div>
+              <div class="text-sm text-gray-200">MXN</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">14 semanas</div>
+              <div class="text-sm text-gray-200">Desarrollo completo</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">4 fases</div>
+              <div class="text-sm text-gray-200">Diseño + Desarrollo</div>
+            </div>
+          </div>
+        </div>
       </Fragment>
 
       <Fragment slot="image">
@@ -199,69 +217,59 @@ const metadata = {
   <!-- Presupuesto ******************* -->
   <section id="pricing">
     <Pricing
-      title="Presupuesto del Proyecto"
-      subtitle="Estructura de precios por fases de desarrollo"
+      title="Cotización Proyecto Rally Maya México"
+      subtitle="Basada en especificaciones técnicas reales - Diseño + Desarrollo unificado"
       prices={[
         {
-          title: 'Fase 1: Diseño y UX/UI',
-          subtitle: 'Wireframes, mockups y diseño visual completo',
-          price: 2500,
-          period: '2 semanas',
+          title: 'Fase 1: Diseño UX/UI Completo',
+          subtitle: 'Investigación, wireframes, diseño visual y handoff técnico',
+          price: 55000,
+          period: '4.5 semanas',
           items: [
-            { description: 'Análisis de requerimientos UX' },
-            { description: 'Wireframes de todas las páginas' },
-            { description: 'Diseño visual completo' },
-            { description: 'Guía de estilos' },
-            { description: 'Prototipo interactivo' },
-            { description: 'Integración identidad Rally Maya' },
+            { description: 'Investigación UX y benchmark completo' },
+            { description: 'Wireframes desktop y mobile (~36 frames)' },
+            { description: 'Diseño UI visual en Figma' },
+            { description: 'Sistema visual y UI Kit completo' },
+            { description: 'Diseño de mailings y plantillas' },
+            { description: 'Handoff técnico y soporte' },
           ],
-          callToAction: {
-            target: '_blank',
-            text: 'Solicitar Fase 1',
-            href: 'mailto:juancarlos@elitekode.com?subject=Fase 1 - Rally Maya México',
-          },
+
+          hasRibbon: true,
+          ribbonTitle: 'Esencial',
         },
         {
-          title: 'Fase 2: Desarrollo Frontend',
-          subtitle: 'Desarrollo completo responsive multiidioma',
-          price: 4500,
+          title: 'Fase 2: Desarrollo Web + CMS',
+          subtitle: 'Next.js, Strapi CMS, PostgreSQL y funcionalidades base',
+          price: 82500,
           period: '4 semanas',
           items: [
-            { description: 'Desarrollo responsive completo' },
-            { description: 'Implementación multiidioma (ES/EN)' },
-            { description: 'Todas las secciones del mapa' },
+            { description: 'Desarrollo con Next.js + Tailwind CSS' },
+            { description: 'CMS Strapi auto-hospedado' },
+            { description: 'Base de datos PostgreSQL' },
+            { description: 'Sitio web informativo completo' },
+            { description: 'Panel de administración' },
             { description: 'Optimización SEO técnica' },
-            { description: 'Integración redes sociales' },
-            { description: 'Galería multimedia' },
-            { description: 'Performance optimization' },
+            { description: 'Responsive design completo' },
           ],
-          callToAction: {
-            target: '_blank',
-            text: 'Solicitar Fase 2',
-            href: 'mailto:juancarlos@elitekode.com?subject=Fase 2 - Rally Maya México',
-          },
+
           hasRibbon: true,
           ribbonTitle: 'Popular',
         },
         {
           title: 'Fase 3: Funcionalidades Avanzadas',
-          subtitle: 'Sistema de registro, pagos y área privada',
-          price: 5500,
-          period: '3 semanas',
+          subtitle: 'Blog, galería, registro, perfiles y pasarela de pago',
+          price: 88125,
+          period: '3.5 semanas',
           items: [
-            { description: 'Sistema registro automatizado' },
-            { description: 'Integración pagos en línea' },
-            { description: 'Área privada de usuarios' },
-            { description: 'CMS gestión contenidos' },
-            { description: 'Panel de administración' },
-            { description: 'Gestión de participantes' },
-            { description: 'Sistema de notificaciones' },
+            { description: 'Blog completo con categorías y tags' },
+            { description: 'Galería multimedia avanzada' },
+            { description: 'Sistema de registro y perfiles' },
+            { description: 'Pasarela de pago integrada' },
+            { description: 'Zona privada para usuarios' },
+            { description: 'Sistema de notificaciones email' },
+            { description: 'CDN para optimización de imágenes' },
           ],
-          callToAction: {
-            target: '_blank',
-            text: 'Solicitar Fase 3',
-            href: 'mailto:juancarlos@elitekode.com?subject=Fase 3 - Rally Maya México',
-          },
+
           hasRibbon: true,
           ribbonTitle: 'Completo',
         },
@@ -273,28 +281,33 @@ const metadata = {
   <section id="presupuesto-total">
     <Content
       isAfterContent
-      items={[
-        {
-          title: 'Fase 4: Testing y Lanzamiento - $2,000 USD',
-          description: 'Testing completo, optimización y puesta en producción (3 semanas).',
-        },
-        {
-          title: 'Total del Proyecto Completo: $14,500 USD',
-          description: 'Duración total estimada: 12 semanas de desarrollo.',
-        },
-        {
-          title: 'Servicios Adicionales Disponibles',
-          description: 'Mantenimiento 6 meses (+$1,200), Hosting Premium (+$800), Analytics Setup (+$500).',
-        },
-      ]}
+              items={[
+          {
+            title: 'Fase 4: QA, Testing y Lanzamiento - $12,900 MXN',
+            description: 'Testing completo, optimización, documentación y puesta en producción (2 semanas).',
+          },
+          {
+            title: 'Total del Proyecto Completo: $238,525 MXN',
+            description: 'Duración total: 14 semanas de desarrollo.',
+          },
+          {
+            title: 'Servicios Adicionales Disponibles',
+            description: 'Mantenimiento 6 meses (+$24,000), Hosting Premium (+$18,000), Multilenguaje (+$25,000), Analytics Avanzado (+$15,000).',
+          },
+        ]}
     >
       <Fragment slot="content">
         <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
           Inversión Total del Proyecto
         </h3>
         <p class="text-lg">
-          El desarrollo completo del sitio web Rally Maya México con todas las funcionalidades requeridas tiene una inversión total de <span class="font-bold text-primary">$14,500 USD</span> y se completará en 12 semanas.
+          El desarrollo completo del sitio web Rally Maya México con todas las funcionalidades requeridas tiene una inversión total de <span class="font-bold text-primary">$238,525 MXN</span> y se completará en 14 semanas.
         </p>
+        <div class="mt-4 p-4 bg-blue-100 dark:bg-blue-900 rounded-lg">
+          <p class="text-sm font-medium text-blue-800 dark:text-blue-200">
+            💡 <strong>Cotización basada en documentos técnicos reales:</strong> Incluye diseño UX/UI profesional ($55,000), desarrollo con Next.js + Strapi ($82,500), funcionalidades avanzadas ($88,125) y testing completo ($12,900).
+          </p>
+        </div>
       </Fragment>
 
       <Fragment slot="bg">
@@ -349,23 +362,23 @@ const metadata = {
     <Content
       isReversed
       tagline="Timeline"
-      title="Cronograma de Desarrollo"
+      title="Cronograma de Desarrollo Rally Maya México"
       items={[
         {
-          title: 'Semanas 1-2: Diseño y UX/UI',
-          description: 'Wireframes, mockups y diseño visual completo.',
+          title: 'Semanas 1-4.5: Diseño UX/UI Completo',
+          description: 'Investigación, wireframes (~36 frames), diseño visual en Figma, sistema UI y handoff técnico.',
         },
         {
-          title: 'Semanas 3-6: Desarrollo Core',
-          description: 'Desarrollo de la estructura principal del sitio web.',
+          title: 'Semanas 5-9: Desarrollo Web + CMS',
+          description: 'Next.js + Tailwind, Strapi CMS, PostgreSQL, sitio informativo completo y panel admin.',
         },
         {
-          title: 'Semanas 7-9: Funcionalidades Avanzadas',
-          description: 'Sistema de registro, pagos y área privada.',
+          title: 'Semanas 10-12.5: Funcionalidades Avanzadas',
+          description: 'Blog, galería, registro de usuarios, perfiles, pasarela de pago y zona privada.',
         },
         {
-          title: 'Semanas 10-12: Testing y Launch',
-          description: 'Pruebas completas, optimización y puesta en producción.',
+          title: 'Semanas 13-14: QA, Testing y Lanzamiento',
+          description: 'Testing completo, optimización, documentación, capacitación y puesta en producción.',
         },
       ]}
       image={{
@@ -375,14 +388,60 @@ const metadata = {
     >
       <Fragment slot="content">
         <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-          12 Semanas de Desarrollo
+          14 Semanas de Desarrollo
         </h3>
         <p>
-          Plan detallado con hitos claros y entregas parciales para mantener al cliente informado
-          del progreso en cada etapa del desarrollo.
+          Plan detallado basado en cotizaciones técnicas reales, con hitos claros y entregas parciales 
+          para mantener al cliente informado del progreso en cada etapa del desarrollo.
         </p>
+        <div class="mt-4 p-4 bg-purple-100 dark:bg-purple-900 rounded-lg">
+          <p class="text-sm font-medium text-purple-800 dark:text-purple-200">
+            🏁 <strong>Cronograma optimizado:</strong> Basado en 71 horas de diseño ($55,000 MXN) + 210-237 horas de desarrollo ($183,525 MXN) según especificaciones técnicas del proyecto.
+          </p>
+        </div>
       </Fragment>
     </Content>
+  </section>
+
+  <!-- Comparación de Cotizaciones *** -->
+  <section id="comparison">
+    <Features2
+      title="Cotización Técnica Detallada"
+      subtitle="Análisis completo de la propuesta unificada basada en documentos técnicos reales del proyecto"
+      tagline="Cotización Real"
+      items={[
+        {
+          title: 'Diseño UX/UI',
+          description: 'Cotización técnica: $55,000 MXN. Incluye investigación UX ($6,000), wireframes (~36 frames, $9,500), diseño visual completo ($20,000), sistema UI ($8,000), mailings ($3,500) y handoff técnico ($4,000).',
+          icon: 'flat-color-icons:approval',
+        },
+        {
+          title: 'Desarrollo Web + CMS',
+          description: 'Cotización técnica: $82,500 MXN. Next.js + Strapi + PostgreSQL ($75,000-$90,000 MXN). Incluye sitio informativo completo, panel admin, SEO y responsive design.',
+          icon: 'flat-color-icons:template',
+        },
+        {
+          title: 'Funcionalidades Avanzadas',
+          description: 'Cotización técnica: $88,125 MXN. Blog completo ($40,500-$47,250), galería multimedia ($10,500-$12,600), registro y perfiles ($17,500-$21,000), pasarela de pago ($7,500-$9,000).',
+          icon: 'flat-color-icons:currency-exchange',
+        },
+        {
+          title: 'Testing y Lanzamiento',
+          description: 'Cotización técnica: $12,900 MXN. Testing completo, optimización de performance, documentación técnica y puesta en producción con soporte incluido.',
+          icon: 'flat-color-icons:business-contact',
+        },
+        {
+          title: 'Total del Proyecto',
+          description: 'Cotización técnica unificada: $238,525 MXN. Basada en especificaciones técnicas reales de diseño (71 horas) + desarrollo (210-237 horas) según documentos originales.',
+          icon: 'flat-color-icons:money-transfer',
+        },
+        {
+          title: 'Stack Tecnológico',
+          description: 'Tecnologías confirmadas: Next.js, Strapi CMS, PostgreSQL, Tailwind CSS, CDN, SendGrid. Especificaciones técnicas detalladas y comprobadas según cotizaciones originales.',
+          icon: 'flat-color-icons:data-backup',
+        },
+      ]}
+    />
   </section>
 
   <!-- Call to Action **************** -->

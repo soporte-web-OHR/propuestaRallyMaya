@@ -83,11 +83,13 @@ const navigationLinks = [
       
       <!-- CTA Button -->
       <a
-        href="#pricing"
+        href="/docs/cotizacionRallyMaya.pdf"
+        target="_blank"
+        download
         class="hidden md:inline-flex items-center px-4 py-2 bg-primary hover:bg-primary-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
       >
-        <Icon name="tabler:calculator" class="w-4 h-4 mr-2" />
-        Ver Presupuesto
+        <Icon name="tabler:download" class="w-4 h-4 mr-2" />
+        Descargar Cotización
       </a>
 
       <!-- Mobile Menu Toggle -->
@@ -118,11 +120,13 @@ const navigationLinks = [
       <!-- Mobile CTA -->
       <li class="pt-2 border-t border-gray-200/30 dark:border-gray-700/30">
         <a
-          href="#pricing"
+          href="/docs/cotizacionRallyMaya.pdf"
+          target="_blank"
+          download
           class="flex items-center justify-center px-4 py-2 bg-primary hover:bg-primary-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200 mobile-nav-link"
         >
-          <Icon name="tabler:calculator" class="w-4 h-4 mr-2" />
-          Ver Presupuesto
+          <Icon name="tabler:download" class="w-4 h-4 mr-2" />
+          Descargar Cotización
         </a>
       </li>
     </ul>
@@ -203,22 +207,26 @@ const navigationLinks = [
 
     // Smooth scroll for anchor links
     navLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
+      const href = link.getAttribute('href');
+      
+      // Only add smooth scroll for anchor links
+      if (href && href.startsWith('#')) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetSection = document.querySelector(href);
         
-        if (targetSection && targetSection instanceof HTMLElement) {
-          const header = document.querySelector('header');
-          const headerHeight = header && header instanceof HTMLElement ? header.offsetHeight : 0;
-          const targetPosition = targetSection.offsetTop - headerHeight - 20;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
+          if (targetSection && targetSection instanceof HTMLElement) {
+            const header = document.querySelector('header');
+            const headerHeight = header && header instanceof HTMLElement ? header.offsetHeight : 0;
+            const targetPosition = targetSection.offsetTop - headerHeight - 20;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
     });
   });
 </script>
