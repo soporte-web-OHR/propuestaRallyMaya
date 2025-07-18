@@ -27,7 +27,24 @@ export default defineConfig({
   base: '/propuestaRallyMaya',
   trailingSlash: 'ignore',
   build: {
-    assets: 'assets'
+    assets: '_astro',
+    assetsPrefix: '/propuestaRallyMaya'
+  },
+  vite: {
+    base: '/propuestaRallyMaya/',
+    build: {
+      assetsDir: '_astro',
+      rollupOptions: {
+        output: {
+          assetFileNames: '_astro/[name].[hash].[ext]'
+        }
+      }
+    },
+    resolve: {
+      alias: {
+        '~': path.resolve(__dirname, './src'),
+      },
+    },
   },
 
   integrations: [
@@ -87,13 +104,5 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
     rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
-  },
-
-  vite: {
-    resolve: {
-      alias: {
-        '~': path.resolve(__dirname, './src'),
-      },
-    },
-  },
+  }
 });
