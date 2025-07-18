@@ -1,8 +1,6 @@
 ---
-import PageLayout from '~/layouts/PageLayout.astro';
-import Header from '~/components/widgets/Header.astro';
-
-import { headerData } from '~/navigation';
+import Layout from '~/layouts/PageLayout.astro';
+import StickyHeader from '~/components/widgets/StickyHeader.astro';
 import type { MetaData } from '~/types';
 
 export interface Props {
@@ -12,24 +10,36 @@ export interface Props {
 const { metadata } = Astro.props;
 ---
 
-<PageLayout metadata={metadata}>
-  <Fragment slot="announcement">
-    <slot name="announcement" />
-  </Fragment>
-  <Fragment slot="header">
-    <slot name="header">
-      <Header
-        links={headerData?.links[2] ? [headerData.links[2]] : undefined}
-        actions={[
-          {
-            text: 'Download',
-            href: 'https://github.com/onwidget/astrowind',
-          },
-        ]}
-        showToggleTheme
-        position="right"
-      />
-    </slot>
-  </Fragment>
-  <slot />
-</PageLayout>
+<Layout metadata={metadata}>
+  <!-- Reemplazar el header normal con el sticky header -->
+  <StickyHeader slot="header" />
+  
+  <!-- Contenido principal -->
+  <main class="overflow-x-hidden">
+    <slot />
+  </main>
+  
+  <!-- Footer se mantiene del layout base -->
+</Layout>
+
+<style>
+  /* Estilos globales para la landing page */
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  /* Ajustar el padding top para compensar el header sticky */
+  :global(main > *:first-child) {
+    scroll-margin-top: 80px;
+  }
+
+  /* Estilos para las secciones con ID para mejor navegación */
+  :global(section[id], div[id]) {
+    scroll-margin-top: 80px;
+  }
+
+  /* Mejorar la visibilidad de las transiciones */
+  :global(.section-transition) {
+    @apply transition-all duration-300 ease-in-out;
+  }
+</style>
