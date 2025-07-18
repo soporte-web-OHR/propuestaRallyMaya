@@ -1,0 +1,222 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from '~/components/Logo.astro';
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
+import ToggleMenu from '~/components/common/ToggleMenu.astro';
+
+export interface Props {
+  id?: string;
+  isSticky?: boolean;
+  isDark?: boolean;
+  isFullWidth?: boolean;
+  showToggleTheme?: boolean;
+}
+
+const {
+  id = 'sticky-header',
+  isSticky = true,
+  isDark = false,
+  isFullWidth = false,
+  showToggleTheme = true,
+} = Astro.props;
+
+// Definir los enlaces del menú para navegar por las secciones
+const navigationLinks = [
+  { text: 'Inicio', href: '#hero', icon: 'tabler:home' },
+  { text: 'Resumen', href: '#resumen', icon: 'tabler:file-description' },
+  { text: 'Fases', href: '#fases', icon: 'tabler:timeline' },
+  { text: 'Tecnología', href: '#tecnologia', icon: 'tabler:code' },
+  { text: 'Presupuesto', href: '#pricing', icon: 'tabler:calculator' },
+  { text: 'Beneficios', href: '#features', icon: 'tabler:trophy' },
+  { text: 'Contacto', href: '#contact', icon: 'tabler:mail' },
+];
+---
+
+<header
+  class:list={[
+    { sticky: isSticky, relative: !isSticky, dark: isDark },
+    'top-0 z-50 flex-none mx-auto w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-700/30 transition-all duration-300 ease-in-out shadow-sm',
+  ]}
+  {...isSticky ? { 'data-aw-sticky-header': true } : {}}
+  {...id ? { id } : {}}
+>
+  <div
+    class:list={[
+      'relative text-default py-3 px-4 md:px-6 mx-auto w-full flex items-center justify-between',
+      {
+        'max-w-7xl': !isFullWidth,
+      },
+    ]}
+  >
+    <!-- Logo -->
+    <div class="flex items-center">
+      <a class="flex items-center" href="#hero">
+        <Logo />
+        <span class="ml-2 text-xl font-bold text-primary hidden sm:block">Rally Maya México</span>
+      </a>
+    </div>
+
+    <!-- Navigation Desktop -->
+    <nav
+      class="hidden lg:flex items-center space-x-1"
+      aria-label="Navegación principal"
+    >
+      <ul class="flex items-center space-x-1">
+        {navigationLinks.map(({ text, href, icon }) => (
+          <li>
+            <a
+              href={href}
+              class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-all duration-200 ease-in-out rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+            >
+              <Icon name={icon} class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200" />
+              {text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="flex items-center space-x-3">
+      {showToggleTheme && (
+        <ToggleTheme iconClass="w-5 h-5" />
+      )}
+      
+      <!-- CTA Button -->
+      <a
+        href="#pricing"
+        class="hidden md:inline-flex items-center px-4 py-2 bg-primary hover:bg-primary-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+      >
+        <Icon name="tabler:calculator" class="w-4 h-4 mr-2" />
+        Ver Presupuesto
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <div class="lg:hidden">
+        <ToggleMenu />
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav
+    id="mobile-nav"
+    class="lg:hidden hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-gray-200/20 dark:border-gray-700/30"
+    aria-label="Navegación móvil"
+  >
+    <ul class="px-4 py-3 space-y-1">
+      {navigationLinks.map(({ text, href, icon }) => (
+        <li>
+          <a
+            href={href}
+            class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-white transition-colors duration-200 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 mobile-nav-link"
+          >
+            <Icon name={icon} class="w-4 h-4 mr-3" />
+            {text}
+          </a>
+        </li>
+      ))}
+      <!-- Mobile CTA -->
+      <li class="pt-2 border-t border-gray-200/30 dark:border-gray-700/30">
+        <a
+          href="#pricing"
+          class="flex items-center justify-center px-4 py-2 bg-primary hover:bg-primary-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200 mobile-nav-link"
+        >
+          <Icon name="tabler:calculator" class="w-4 h-4 mr-2" />
+          Ver Presupuesto
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Active link styling */
+  .nav-link-active {
+    @apply text-primary bg-primary/10 dark:bg-primary/20;
+  }
+
+  /* Header backdrop blur effect */
+  header[data-aw-sticky-header] {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle functionality
+    const toggleBtn = document.querySelector('[data-aw-toggle-menu]');
+    const mobileNav = document.getElementById('mobile-nav');
+    
+    if (toggleBtn && mobileNav) {
+      toggleBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('hidden');
+      });
+    }
+
+    // Close mobile menu when clicking on links
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileNav) {
+          mobileNav.classList.add('hidden');
+        }
+      });
+    });
+
+    // Highlight active section in navigation
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+    function updateActiveLink() {
+      let currentSection = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('nav-link-active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('nav-link-active');
+        }
+      });
+    }
+
+    // Update active link on scroll
+    window.addEventListener('scroll', updateActiveLink);
+    
+    // Update active link on page load
+    updateActiveLink();
+
+    // Smooth scroll for anchor links
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const targetPosition = targetSection.offsetTop - headerHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>
