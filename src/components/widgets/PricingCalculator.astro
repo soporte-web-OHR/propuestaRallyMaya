@@ -1,0 +1,435 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Button from '~/components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
+
+const {
+  title = 'Calculadora de Presupuesto',
+  subtitle = 'Selecciona las fases que deseas incluir en tu proyecto',
+  tagline = 'Presupuesto',
+  id = 'pricing',
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// Datos de las fases del proyecto
+const fases = [
+  {
+    id: 'fase1',
+    title: 'Diseño y UX/UI',
+    description: 'Wireframes, mockups, diseño visual completo e integración de identidad gráfica',
+    price: 2500,
+    duration: 2,
+    items: [
+      'Análisis de requerimientos UX',
+      'Wireframes de todas las páginas',
+      'Diseño visual completo',
+      'Guía de estilos',
+      'Prototipo interactivo',
+      'Integración identidad Rally Maya'
+    ],
+    icon: 'tabler:palette',
+    popular: false
+  },
+  {
+    id: 'fase2',
+    title: 'Desarrollo Frontend',
+    description: 'Desarrollo completo del sitio web multiidioma con optimización SEO',
+    price: 4500,
+    duration: 4,
+    items: [
+      'Desarrollo responsive completo',
+      'Implementación multiidioma (ES/EN)',
+      'Todas las secciones del mapa de navegación',
+      'Optimización SEO técnica',
+      'Integración con redes sociales',
+      'Galería multimedia',
+      'Performance optimization'
+    ],
+    icon: 'tabler:code',
+    popular: true
+  },
+  {
+    id: 'fase3',
+    title: 'Funcionalidades Avanzadas',
+    description: 'Sistema de registro, pagos en línea, área privada y CMS',
+    price: 5500,
+    duration: 3,
+    items: [
+      'Sistema de registro automatizado',
+      'Integración de pagos en línea',
+      'Área privada de usuarios',
+      'Sistema de gestión de contenidos (CMS)',
+      'Panel de administración',
+      'Gestión de participantes',
+      'Sistema de notificaciones'
+    ],
+    icon: 'tabler:settings',
+    popular: true
+  },
+  {
+    id: 'fase4',
+    title: 'Testing y Lanzamiento',
+    description: 'Testing completo, optimización y puesta en producción',
+    price: 2000,
+    duration: 3,
+    items: [
+      'Testing funcional completo',
+      'Testing de seguridad',
+      'Optimización de performance',
+      'Configuración de hosting',
+      'Puesta en producción',
+      'Capacitación del equipo',
+      'Documentación técnica'
+    ],
+    icon: 'tabler:rocket',
+    popular: false
+  }
+];
+
+const extras = [
+  {
+    id: 'mantenimiento',
+    title: 'Mantenimiento (6 meses)',
+    description: 'Soporte técnico y mantenimiento durante 6 meses',
+    price: 1200,
+    icon: 'tabler:headset'
+  },
+  {
+    id: 'hosting',
+    title: 'Hosting Premium (1 año)',
+    description: 'Hosting de alto rendimiento con CDN y SSL',
+    price: 800,
+    icon: 'tabler:server'
+  },
+  {
+    id: 'analytics',
+    title: 'Setup Analytics Avanzado',
+    description: 'Configuración completa de Google Analytics y herramientas SEO',
+    price: 500,
+    icon: 'tabler:chart-line'
+  }
+];
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  
+  <div class="pricing-calculator">
+    <!-- Fases del Proyecto -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold text-center mb-8 dark:text-white">Fases del Proyecto</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {fases.map((fase) => (
+          <div class="pricing-card relative bg-white dark:bg-slate-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            {fase.popular && (
+              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  Recomendado
+                </span>
+              </div>
+            )}
+            
+            <div class="text-center mb-4">
+              <Icon name={fase.icon} class="w-12 h-12 mx-auto mb-3 text-blue-600" />
+              <h4 class="text-lg font-semibold mb-2 dark:text-white">{fase.title}</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">{fase.description}</p>
+              
+              <div class="text-3xl font-bold text-blue-600 mb-2">
+                ${fase.price.toLocaleString()}
+              </div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">{fase.duration} semanas</div>
+            </div>
+
+            <ul class="space-y-2 mb-6">
+              {fase.items.map((item) => (
+                <li class="flex items-start text-sm">
+                  <Icon name="tabler:check" class="w-4 h-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                  <span class="dark:text-gray-300">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <label class="flex items-center justify-center space-x-2 cursor-pointer">
+              <input 
+                type="checkbox" 
+                data-phase={fase.id}
+                data-price={fase.price}
+                data-duration={fase.duration}
+                data-title={fase.title}
+                class="phase-checkbox w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                checked={fase.popular}
+              />
+              <span class="text-sm font-medium dark:text-white">Incluir en proyecto</span>
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Servicios Adicionales -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold text-center mb-8 dark:text-white">Servicios Adicionales</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {extras.map((extra) => (
+          <div class="bg-gray-50 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+            <div class="text-center mb-4">
+              <Icon name={extra.icon} class="w-10 h-10 mx-auto mb-3 text-green-600" />
+              <h4 class="text-lg font-semibold mb-2 dark:text-white">{extra.title}</h4>
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">{extra.description}</p>
+              
+              <div class="text-2xl font-bold text-green-600 mb-4">
+                ${extra.price.toLocaleString()}
+              </div>
+            </div>
+
+            <label class="flex items-center justify-center space-x-2 cursor-pointer">
+              <input 
+                type="checkbox" 
+                data-extra={extra.id}
+                data-price={extra.price}
+                data-title={extra.title}
+                class="extra-checkbox w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
+              />
+              <span class="text-sm font-medium dark:text-white">Agregar al proyecto</span>
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Resumen y Total -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-xl p-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-2xl font-bold mb-4">Resumen del Proyecto</h3>
+            <div id="selected-items" class="space-y-2 mb-6 min-h-[120px]">
+              <div class="text-blue-200 italic" id="no-items-message">
+                Selecciona las fases que deseas incluir en tu proyecto
+              </div>
+            </div>
+            
+            <div class="border-t border-blue-400 pt-4">
+              <div class="flex justify-between items-center text-xl font-bold">
+                <span>Total del Proyecto:</span>
+                <span id="total-price">$0</span>
+              </div>
+              <div class="text-blue-200 mt-2">
+                <span id="estimated-duration">Duración estimada: 0 semanas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center lg:text-right">
+            <div class="mb-6">
+              <div class="text-lg mb-2">¿Listo para comenzar?</div>
+              <div class="text-sm text-blue-200">Obtén tu presupuesto personalizado</div>
+            </div>
+            
+            <div class="space-y-3">
+              <button 
+                id="request-quote-btn"
+                class="w-full lg:w-auto bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                📧 Solicitar Presupuesto Formal
+              </button>
+              <br>
+              <button 
+                class="w-full lg:w-auto border border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                onclick="window.open('mailto:juancarlos@elitekode.com?subject=Reunión Rally Maya México&body=Hola, me interesa programar una reunión para discutir el proyecto Rally Maya México.', '_blank')"
+              >
+                📅 Programar Reunión
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información Adicional -->
+    <div class="mt-12 bg-gray-50 dark:bg-slate-800 rounded-xl p-8">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-xl font-bold mb-6 text-center dark:text-white">Información del Presupuesto</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div>
+            <Icon name="tabler:shield-check" class="w-8 h-8 mx-auto mb-2 text-green-600" />
+            <h4 class="font-semibold mb-2 dark:text-white">Garantía de Calidad</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Garantía de 3 meses en todo el desarrollo</p>
+          </div>
+          <div>
+            <Icon name="tabler:clock" class="w-8 h-8 mx-auto mb-2 text-blue-600" />
+            <h4 class="font-semibold mb-2 dark:text-white">Entrega Puntual</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Compromiso con plazos establecidos</p>
+          </div>
+          <div>
+            <Icon name="tabler:headset" class="w-8 h-8 mx-auto mb-2 text-purple-600" />
+            <h4 class="font-semibold mb-2 dark:text-white">Soporte Incluido</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Soporte técnico durante el desarrollo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Fragment slot="bg">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>
+  </Fragment>
+</WidgetWrapper>
+
+<script>
+  // Funcionalidad de la calculadora
+  document.addEventListener('DOMContentLoaded', function() {
+    const phaseCheckboxes = document.querySelectorAll('.phase-checkbox');
+    const extraCheckboxes = document.querySelectorAll('.extra-checkbox');
+    const selectedItemsContainer = document.getElementById('selected-items');
+    const totalPriceElement = document.getElementById('total-price');
+    const estimatedDurationElement = document.getElementById('estimated-duration');
+    const noItemsMessage = document.getElementById('no-items-message');
+    const requestQuoteBtn = document.getElementById('request-quote-btn');
+
+    let selectedItems = [];
+    let totalPrice = 0;
+    let totalDuration = 0;
+
+    // Inicializar con elementos marcados
+    updateCalculator();
+
+    // Event listeners para checkboxes de fases
+    phaseCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateCalculator);
+    });
+
+    // Event listeners para checkboxes de extras
+    extraCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateCalculator);
+    });
+
+    // Event listener para el botón de solicitar presupuesto
+    requestQuoteBtn.addEventListener('click', function() {
+      if (selectedItems.length > 0) {
+        generateQuoteEmail();
+      }
+    });
+
+    function updateCalculator() {
+      selectedItems = [];
+      totalPrice = 0;
+      totalDuration = 0;
+
+      // Procesar fases seleccionadas
+      phaseCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          const item = {
+            type: 'phase',
+            title: checkbox.dataset.title,
+            price: parseInt(checkbox.dataset.price),
+            duration: parseInt(checkbox.dataset.duration) || 0
+          };
+          selectedItems.push(item);
+          totalPrice += item.price;
+          totalDuration += item.duration;
+        }
+      });
+
+      // Procesar extras seleccionados
+      extraCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          const item = {
+            type: 'extra',
+            title: checkbox.dataset.title,
+            price: parseInt(checkbox.dataset.price)
+          };
+          selectedItems.push(item);
+          totalPrice += item.price;
+        }
+      });
+
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      // Limpiar contenedor
+      selectedItemsContainer.innerHTML = '';
+
+      if (selectedItems.length === 0) {
+        selectedItemsContainer.innerHTML = '<div class="text-blue-200 italic" id="no-items-message">Selecciona las fases que deseas incluir en tu proyecto</div>';
+        requestQuoteBtn.disabled = true;
+        requestQuoteBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      } else {
+        selectedItems.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'flex justify-between items-center';
+          itemDiv.innerHTML = `
+            <span class="text-white">${item.title}</span>
+            <span class="text-blue-200">$${item.price.toLocaleString()}</span>
+          `;
+          selectedItemsContainer.appendChild(itemDiv);
+        });
+        requestQuoteBtn.disabled = false;
+        requestQuoteBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+
+      // Actualizar totales
+      totalPriceElement.textContent = `$${totalPrice.toLocaleString()}`;
+      estimatedDurationElement.textContent = `Duración estimada: ${totalDuration} semanas`;
+    }
+
+    function generateQuoteEmail() {
+      let emailBody = `Hola,
+
+Me interesa solicitar un presupuesto formal para el proyecto Rally Maya México con las siguientes especificaciones:
+
+FASES SELECCIONADAS:
+`;
+
+      selectedItems.forEach(item => {
+        if (item.type === 'phase') {
+          emailBody += `✓ ${item.title} - $${item.price.toLocaleString()}\n`;
+        }
+      });
+
+      const extraItems = selectedItems.filter(item => item.type === 'extra');
+      if (extraItems.length > 0) {
+        emailBody += `
+SERVICIOS ADICIONALES:
+`;
+        extraItems.forEach(item => {
+          emailBody += `✓ ${item.title} - $${item.price.toLocaleString()}\n`;
+        });
+      }
+
+      emailBody += `
+RESUMEN:
+- Total del proyecto: $${totalPrice.toLocaleString()}
+- Duración estimada: ${totalDuration} semanas
+
+Por favor, envíenme la propuesta formal con los términos y condiciones.
+
+Saludos cordiales.`;
+
+      const subject = 'Solicitud de Presupuesto Formal - Rally Maya México';
+      const mailtoLink = `mailto:juancarlos@elitekode.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      window.open(mailtoLink, '_blank');
+    }
+  });
+</script>
+
+<style>
+  .pricing-card {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .phase-checkbox:checked + span,
+  .extra-checkbox:checked + span {
+    font-weight: 600;
+  }
+</style>
