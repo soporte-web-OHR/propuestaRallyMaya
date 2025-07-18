@@ -1,5 +1,5 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import Layout from '~/layouts/Layout.astro';
 import StickyHeader from '~/components/widgets/StickyHeader.astro';
 import type { MetaData } from '~/types';
 
@@ -11,15 +11,13 @@ const { metadata } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
-  <!-- Reemplazar el header normal con el sticky header -->
-  <StickyHeader slot="header" />
+  <!-- Sticky Header -->
+  <StickyHeader />
   
   <!-- Contenido principal -->
   <main class="overflow-x-hidden">
     <slot />
   </main>
-  
-  <!-- Footer se mantiene del layout base -->
 </Layout>
 
 <style>
