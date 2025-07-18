@@ -3,7 +3,11 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: 'Propuesta Rally Maya',
+      href: getPermalink('/propuesta'),
+    },
+    {
+      text: 'Demos',
       links: [
         {
           text: 'SaaS',
@@ -24,35 +28,23 @@ export const headerData = {
       ],
     },
     {
-      text: 'Pages',
+      text: 'Páginas',
       links: [
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'Services',
+          text: 'Servicios',
           href: getPermalink('/services'),
         },
         {
-          text: 'Pricing',
+          text: 'Precios',
           href: getPermalink('/pricing'),
         },
         {
-          text: 'About us',
+          text: 'Acerca de',
           href: getPermalink('/about'),
         },
         {
-          text: 'Contact',
+          text: 'Contacto',
           href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
         },
       ],
     },
@@ -72,11 +64,11 @@ export const headerData = {
           href: getPermalink('/landing/click-through'),
         },
         {
-          text: 'Product Details (or Services)',
+          text: 'Product Details',
           href: getPermalink('/landing/product'),
         },
         {
-          text: 'Coming Soon or Pre-Launch',
+          text: 'Coming Soon',
           href: getPermalink('/landing/pre-launch'),
         },
         {
@@ -89,95 +81,94 @@ export const headerData = {
       text: 'Blog',
       links: [
         {
-          text: 'Blog List',
+          text: 'Lista de Blog',
           href: getBlogPermalink(),
         },
         {
-          text: 'Article',
+          text: 'Artículo',
           href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
         },
         {
-          text: 'Article (with MDX)',
+          text: 'Artículo (con MDX)',
           href: getPermalink('markdown-elements-demo-post', 'post'),
         },
         {
-          text: 'Category Page',
+          text: 'Página de Categoría',
           href: getPermalink('tutorials', 'category'),
         },
         {
-          text: 'Tag Page',
+          text: 'Página de Tag',
           href: getPermalink('astro', 'tag'),
         },
       ],
     },
-    {
-      text: 'Widgets',
-      href: '#',
-    },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [
+    { 
+      text: 'Ver Propuesta', 
+      href: getPermalink('/propuesta'),
+      variant: 'primary'
+    }
+  ],
 };
 
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Rally Maya México',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'Propuesta Económica', href: getPermalink('/propuesta') },
+        { text: 'Características', href: getPermalink('/propuesta#features') },
+        { text: 'Calculadora de Precios', href: getPermalink('/propuesta#pricing') },
+        { text: 'Timeline del Proyecto', href: getPermalink('/propuesta#timeline') },
+        { text: 'Contacto', href: getPermalink('/propuesta#contact') },
       ],
     },
     {
-      title: 'Platform',
+      title: 'Servicios',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        { text: 'Desarrollo Web', href: getPermalink('/services') },
+        { text: 'Diseño UX/UI', href: getPermalink('/services') },
+        { text: 'E-commerce', href: getPermalink('/services') },
+        { text: 'SEO', href: getPermalink('/services') },
+        { text: 'Mantenimiento', href: getPermalink('/services') },
       ],
     },
     {
-      title: 'Support',
+      title: 'Recursos',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'Blog', href: getBlogPermalink() },
+        { text: 'Precios', href: getPermalink('/pricing') },
+        { text: 'Casos de Éxito', href: '#' },
+        { text: 'Testimonios', href: '#' },
+        { text: 'FAQ', href: '#' },
       ],
     },
     {
-      title: 'Company',
+      title: 'Empresa',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'Acerca de EliteKode', href: getPermalink('/about') },
+        { text: 'Contacto', href: getPermalink('/contact') },
+        { text: 'Trabajos', href: '#' },
+        { text: 'Prensa', href: '#' },
+        { text: 'Privacidad', href: getPermalink('/privacy') },
+        { text: 'Términos', href: getPermalink('/terms') },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Términos', href: getPermalink('/terms') },
+    { text: 'Política de Privacidad', href: getPermalink('/privacy') },
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/soporte-web-OHR' },
   ],
   footNote: `
-    <img class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm" src="https://onwidget.com/favicon/favicon-32x32.png" alt="onWidget logo" loading="lazy"></img>
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://onwidget.com/"> onWidget</a> · All rights reserved.
+    <img class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm" src="https://via.placeholder.com/32x32?text=EK" alt="EliteKode logo" loading="lazy"></img>
+    Desarrollado por <a class="text-blue-600 underline dark:text-muted" href="mailto:juancarlos@elitekode.com">EliteKode</a> · Propuesta Rally Maya México.
   `,
 };
