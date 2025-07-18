@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--aw-color-primary)',
+        primary: {
+          DEFAULT: '#1D4ED8', // Azul Tailwind por defecto, cámbialo si quieres otro color
+        },
         secondary: 'var(--aw-color-secondary)',
         accent: 'var(--aw-color-accent)',
         default: 'var(--aw-color-text-default)',

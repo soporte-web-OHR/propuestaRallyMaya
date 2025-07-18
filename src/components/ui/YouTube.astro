@@ -1,0 +1,38 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+  params?: string;
+  width?: number;
+  height?: number;
+}
+
+const { 
+  id, 
+  title = "YouTube video", 
+  params = "",
+  width = 560,
+  height = 315
+} = Astro.props;
+
+const youtubeUrl = `https://www.youtube.com/embed/${id}${params ? `?${params}` : ''}`;
+---
+
+<iframe 
+  width={width} 
+  height={height} 
+  src={youtubeUrl}
+  title={title}
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen
+  loading="lazy"
+  class="w-full h-auto aspect-video rounded-lg shadow-lg"
+>
+</iframe>
+
+<style>
+  iframe {
+    max-width: 100%;
+  }
+</style>

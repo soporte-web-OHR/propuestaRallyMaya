@@ -52,7 +52,6 @@ const navigationLinks = [
     <div class="flex items-center">
       <a class="flex items-center" href="#hero">
         <Logo />
-        <span class="ml-2 text-xl font-bold text-primary hidden sm:block">Rally Maya México</span>
       </a>
     </div>
 
@@ -178,11 +177,13 @@ const navigationLinks = [
       let currentSection = '';
       
       sections.forEach(section => {
+        // Asegura que section es un HTMLElement
+        if (!(section instanceof HTMLElement)) return;
         const sectionTop = section.offsetTop - 100;
         const sectionHeight = section.offsetHeight;
         
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = section.getAttribute('id');
+          currentSection = section.getAttribute('id') || '';
         }
       });
 
@@ -202,13 +203,14 @@ const navigationLinks = [
 
     // Smooth scroll for anchor links
     navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
         
-        if (targetSection) {
-          const headerHeight = document.querySelector('header').offsetHeight;
+        if (targetSection && targetSection instanceof HTMLElement) {
+          const header = document.querySelector('header');
+          const headerHeight = header && header instanceof HTMLElement ? header.offsetHeight : 0;
           const targetPosition = targetSection.offsetTop - headerHeight - 20;
           
           window.scrollTo({
