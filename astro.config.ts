@@ -23,6 +23,8 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
+  site: 'https://soporte-web-ohr.github.io',
+  base: '/propuestaRallyMaya',
 
   integrations: [
     tailwind({
@@ -43,6 +45,9 @@ export default defineConfig({
           'voice-presentation',
           'business-contact',
           'database',
+          'money-transfer',
+          'data-backup',
+          'timeline',
         ],
       },
     }),
