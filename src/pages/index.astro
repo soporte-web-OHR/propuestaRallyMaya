@@ -1,299 +1,430 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import LandingLayout from '~/layouts/LandingLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import ContactForm from '~/components/widgets/Contact.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
 
 const metadata = {
-  title: 'EliteKode - Desarrollo Web Profesional | Propuesta Rally Maya México',
+  title: 'Rally Maya México - Propuesta Desarrollo Web | EliteKode',
+  description: 'Propuesta económica detallada para el desarrollo completo del sitio web Rally Maya México. Incluye diseño, desarrollo, funcionalidades avanzadas y más.',
   ignoreTitleTemplate: true,
 };
 ---
 
-<Layout metadata={metadata}>
+<LandingLayout metadata={metadata}>
   <!-- Hero Widget ******************* -->
+  <section id="hero">
+    <Hero
+      tagline="Propuesta de Desarrollo Web"
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Ver Presupuesto',
+          href: '#pricing',
+          icon: 'tabler:calculator',
+        },
+        { text: 'Descargar PDF', href: '#', icon: 'tabler:download' },
+      ]}
+    >
+      <Fragment slot="title">
+        Desarrollo Web Completo para<br />
+        <span class="text-accent dark:text-white">Rally Maya México</span>
+      </Fragment>
 
-  <Hero
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Ver Propuesta Rally Maya',
-        href: '/propuesta',
-        target: '_self',
-        icon: 'tabler:file-text',
-      },
-      { text: 'Saber más', href: '#features' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
-  >
-    <Fragment slot="title">
-      Desarrollo Web Profesional para <span class="hidden xl:inline">Rally Maya México</span>
-      <span class="text-accent dark:text-white"> EliteKode</span>
-    </Fragment>
+      <Fragment slot="subtitle">
+        <span class="hidden sm:inline">
+          Propuesta integral para crear una plataforma web moderna, funcional y orientada a resultados para el Rally Maya México.
+          <span class="font-semibold">Desde el diseño hasta el desarrollo completo</span> con todas las funcionalidades requeridas.
+        </span>
+      </Fragment>
 
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">EliteKode</span> presenta una propuesta integral para el desarrollo del sitio web
-        Rally Maya México. Soluciones modernas, funcionales y orientadas a resultados.</span
-      >
-      Tecnología de vanguardia para eventos automovilísticos de clase mundial.
-    </Fragment>
-  </Hero>
+      <Fragment slot="image">
+        <div class="relative h-0 pb-[56.25%]">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/dsTXcSeAZq8"
+            title="Rally Maya México"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+            allowfullscreen
+            class="absolute top-0 left-0 w-full h-full"
+          ></iframe>
+        </div>
+      </Fragment>
+    </Hero>
+  </section>
 
   <!-- Note Widget ******************* -->
-
   <Note />
 
-  <!-- Features Widget *************** -->
+  <!-- Resumen del Proyecto *********** -->
+  <section id="resumen">
+    <Content
+      title="Resumen del Proyecto"
+      subtitle="Análisis detallado de los requerimientos y alcance del desarrollo"
+      isReversed
+      items={[
+        {
+          title: 'Sitio Web Desde Cero',
+          description: 'Desarrollo completo de una nueva plataforma web para Rally Maya México.',
+        },
+        {
+          title: 'Multiidioma (ES/EN)',
+          description: 'Implementación bilingüe con contenido proporcionado por el cliente.',
+        },
+        {
+          title: 'Sistema de Registro',
+          description: 'Plataforma automatizada con integración de pagos en línea.',
+        },
+        {
+          title: 'Área Privada',
+          description: 'Sección exclusiva para participantes registrados.',
+        },
+        {
+          title: 'CMS Integrado',
+          description: 'Sistema de gestión de contenidos para actualizaciones fáciles.',
+        },
+        {
+          title: 'SEO Optimizado',
+          description: 'Optimización completa para motores de búsqueda y dispositivos móviles.',
+        },
+      ]}
+      image={{
+        src: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+        alt: 'Rally Maya México',
+      }}
+    >
+      <Fragment slot="content">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+          Alcance del Desarrollo
+        </h3>
+        <p>
+          Basándonos en el análisis de requerimientos, desarrollaremos una plataforma web completa que incluye
+          todas las funcionalidades solicitadas, desde la galería multimedia hasta el sistema de pagos integrado.
+        </p>
+      </Fragment>
 
-  <Features
-    id="features"
-    tagline="Características"
-    title="Nuestra Propuesta para Rally Maya México"
-    subtitle="Desarrollo web especializado en eventos automovilísticos con todas las funcionalidades requeridas"
-    items={[
-      {
-        title: 'Sistema de Registro Automatizado',
-        description:
-          'Plataforma completa para inscripciones con integración de pagos en línea y gestión de participantes.',
-        icon: 'tabler:user-plus',
-      },
-      {
-        title: 'Sitio Web Multiidioma',
-        description:
-          'Implementación en español e inglés para alcance internacional del Rally Maya México.',
-        icon: 'tabler:world',
-      },
-      {
-        title: 'Área Privada de Usuarios',
-        description: 'Sección exclusiva para participantes registrados con acceso controlado por credenciales.',
-        icon: 'tabler:lock',
-      },
-      {
-        title: 'CMS Integrado',
-        description:
-          'Sistema de gestión de contenidos para actualizaciones fáciles durante y después del evento.',
-        icon: 'tabler:settings',
-      },
-      {
-        title: 'Galería Multimedia',
-        description:
-          'Integración con galería de fotos y videos del evento, optimizada para performance y experiencia visual.',
-        icon: 'tabler:photo',
-      },
-      {
-        title: 'SEO Optimizado',
-        description:
-          'Optimización completa para motores de búsqueda con las keywords específicas del Rally Maya México.',
-        icon: 'tabler:search',
-      },
-    ]}
-  />
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>
+      </Fragment>
+    </Content>
+  </section>
 
-  <!-- Content Widget **************** -->
+  <!-- Fases del Proyecto ************* -->
+  <section id="fases">
+    <Steps
+      title="Fases del Proyecto"
+      subtitle="Metodología estructurada para garantizar el éxito del desarrollo"
+      items={[
+        {
+          title: '<span class="font-medium">Fase 1:</span> <span class="text-primary">Diseño y UX/UI</span>',
+          description: "Creación de wireframes, mockups y diseño visual completo. Integración de la identidad gráfica del Rally Maya México con una experiencia de usuario moderna y efectiva.",
+          icon: 'tabler:palette',
+        },
+        {
+          title: '<span class="font-medium">Fase 2:</span> <span class="text-primary">Desarrollo Frontend</span>',
+          description: "Desarrollo de todas las secciones del sitio web con tecnología moderna. Implementación responsive, multiidioma y optimización SEO completa.",
+          icon: 'tabler:code',
+        },
+        {
+          title: '<span class="font-medium">Fase 3:</span> <span class="text-primary">Funcionalidades Avanzadas</span>',
+          description: "Desarrollo del sistema de registro automatizado, integración de pagos, área privada de usuarios y sistema de gestión de contenidos (CMS).",
+          icon: 'tabler:settings',
+        },
+        {
+          title: '<span class="font-medium">Fase 4:</span> <span class="text-primary">Integración y Testing</span>',
+          description: "Integración con redes sociales, galería multimedia, testing completo, optimización de rendimiento y puesta en producción.",
+          icon: 'tabler:rocket',
+        },
+      ]}
+      image={{
+        src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+        alt: 'Steps image',
+      }}
+    />
+  </section>
 
-  <Content
-    isReversed
-    tagline="Proyecto Rally Maya México"
-    title="Desarrollo Web Completo y Profesional"
-    items={[
-      {
-        title: 'Análisis de Requerimientos Completo',
-        description:
-          'Hemos analizado detalladamente todos los requerimientos del proyecto basándonos en el cuestionario proporcionado.',
-      },
-      {
-        title: 'Metodología Probada',
-        description:
-          'Utilizamos metodologías ágiles con entregas parciales y feedback continuo durante todo el proceso de desarrollo.',
-      },
-      {
-        title: 'Tecnología Moderna',
-        description:
-          'Stack tecnológico actualizado que garantiza performance, seguridad y escalabilidad a largo plazo.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        Propuesta Técnica Detallada
-      </h3>
-      <p>
-        Nuestra propuesta incluye el desarrollo completo del sitio web Rally Maya México con todas las
-        funcionalidades solicitadas, desde el sistema de registro hasta la integración con redes sociales.
-      </p>
-    </Fragment>
+  <!-- Tecnologías y Herramientas ***** -->
+  <section id="tecnologia">
+    <Features2
+      title="Tecnologías y Herramientas"
+      subtitle="Stack tecnológico moderno para garantizar performance y escalabilidad"
+      tagline="Tecnología"
+      items={[
+        {
+          title: 'Desarrollo Frontend',
+          description: "React.js / Next.js, TypeScript, Tailwind CSS para un desarrollo moderno y mantenible.",
+          icon: 'flat-color-icons:template',
+        },
+        {
+          title: 'Backend y CMS',
+          description: "Node.js, Strapi CMS para gestión de contenidos y API robusta.",
+          icon: 'flat-color-icons:gallery',
+        },
+        {
+          title: 'Base de Datos',
+          description: "PostgreSQL para almacenamiento seguro y escalable de datos.",
+          icon: 'flat-color-icons:database',
+        },
+        {
+          title: 'Pagos en Línea',
+          description: "Integración con Stripe/PayPal para procesamiento seguro de pagos.",
+          icon: 'flat-color-icons:money-transfer',
+        },
+        {
+          title: 'Hosting y CDN',
+          description: "AWS/Vercel para hosting de alta performance con CDN global.",
+          icon: 'flat-color-icons:data-backup',
+        },
+        {
+          title: 'SEO y Analytics',
+          description: "Google Analytics, Search Console y optimización técnica SEO.",
+          icon: 'flat-color-icons:timeline',
+        },
+      ]}
+    />
+  </section>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-slate-800"></div>
-    </Fragment>
-  </Content>
+  <!-- Presupuesto ******************* -->
+  <section id="pricing">
+    <Pricing
+      title="Presupuesto del Proyecto"
+      subtitle="Estructura de precios por fases de desarrollo"
+      prices={[
+        {
+          title: 'Fase 1: Diseño y UX/UI',
+          subtitle: 'Wireframes, mockups y diseño visual completo',
+          price: 2500,
+          period: '2 semanas',
+          items: [
+            { description: 'Análisis de requerimientos UX' },
+            { description: 'Wireframes de todas las páginas' },
+            { description: 'Diseño visual completo' },
+            { description: 'Guía de estilos' },
+            { description: 'Prototipo interactivo' },
+            { description: 'Integración identidad Rally Maya' },
+          ],
+          callToAction: {
+            target: '_blank',
+            text: 'Solicitar Fase 1',
+            href: 'mailto:juancarlos@elitekode.com?subject=Fase 1 - Rally Maya México',
+          },
+        },
+        {
+          title: 'Fase 2: Desarrollo Frontend',
+          subtitle: 'Desarrollo completo responsive multiidioma',
+          price: 4500,
+          period: '4 semanas',
+          items: [
+            { description: 'Desarrollo responsive completo' },
+            { description: 'Implementación multiidioma (ES/EN)' },
+            { description: 'Todas las secciones del mapa' },
+            { description: 'Optimización SEO técnica' },
+            { description: 'Integración redes sociales' },
+            { description: 'Galería multimedia' },
+            { description: 'Performance optimization' },
+          ],
+          callToAction: {
+            target: '_blank',
+            text: 'Solicitar Fase 2',
+            href: 'mailto:juancarlos@elitekode.com?subject=Fase 2 - Rally Maya México',
+          },
+          hasRibbon: true,
+          ribbonTitle: 'Popular',
+        },
+        {
+          title: 'Fase 3: Funcionalidades Avanzadas',
+          subtitle: 'Sistema de registro, pagos y área privada',
+          price: 5500,
+          period: '3 semanas',
+          items: [
+            { description: 'Sistema registro automatizado' },
+            { description: 'Integración pagos en línea' },
+            { description: 'Área privada de usuarios' },
+            { description: 'CMS gestión contenidos' },
+            { description: 'Panel de administración' },
+            { description: 'Gestión de participantes' },
+            { description: 'Sistema de notificaciones' },
+          ],
+          callToAction: {
+            target: '_blank',
+            text: 'Solicitar Fase 3',
+            href: 'mailto:juancarlos@elitekode.com?subject=Fase 3 - Rally Maya México',
+          },
+          hasRibbon: true,
+          ribbonTitle: 'Completo',
+        },
+      ]}
+    />
+  </section>
 
-  <!-- Steps Widget ****************** -->
+  <!-- Presupuesto Total ************* -->
+  <section id="presupuesto-total">
+    <Content
+      isAfterContent
+      items={[
+        {
+          title: 'Fase 4: Testing y Lanzamiento - $2,000 USD',
+          description: 'Testing completo, optimización y puesta en producción (3 semanas).',
+        },
+        {
+          title: 'Total del Proyecto Completo: $14,500 USD',
+          description: 'Duración total estimada: 12 semanas de desarrollo.',
+        },
+        {
+          title: 'Servicios Adicionales Disponibles',
+          description: 'Mantenimiento 6 meses (+$1,200), Hosting Premium (+$800), Analytics Setup (+$500).',
+        },
+      ]}
+    >
+      <Fragment slot="content">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+          Inversión Total del Proyecto
+        </h3>
+        <p class="text-lg">
+          El desarrollo completo del sitio web Rally Maya México con todas las funcionalidades requeridas tiene una inversión total de <span class="font-bold text-primary">$14,500 USD</span> y se completará en 12 semanas.
+        </p>
+      </Fragment>
 
-  <Steps
-    title="Fases del Proyecto Rally Maya México"
-    items={[
-      {
-        title: '<span class="font-medium">Fase 1:</span> <span class="text-primary">Diseño y UX/UI</span>',
-        description:
-          "Wireframes, mockups y diseño visual completo integrando la identidad gráfica del Rally Maya México.",
-        icon: 'tabler:palette',
-      },
-      {
-        title: '<span class="font-medium">Fase 2:</span> <span class="text-primary">Desarrollo Frontend</span>',
-        description:
-          "Desarrollo responsive, multiidioma y implementación de todas las secciones del mapa de navegación.",
-        icon: 'tabler:code',
-      },
-      {
-        title: '<span class="font-medium">Fase 3:</span> <span class="text-primary">Funcionalidades Avanzadas</span>',
-        description:
-          "Sistema de registro, pagos en línea, área privada y CMS para gestión de contenidos.",
-        icon: 'tabler:settings',
-      },
-      {
-        title: '<span class="font-medium">Fase 4:</span> <span class="text-primary">Testing y Lanzamiento</span>',
-        description: 'Testing completo, optimización de performance y puesta en producción.',
-        icon: 'tabler:rocket',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
-  />
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-green-50 dark:bg-slate-800"></div>
+      </Fragment>
+    </Content>
+  </section>
 
-  <!-- Features2 Widget ************** -->
+  <!-- Beneficios del Proyecto ******* -->
+  <section id="features">
+    <Features
+      tagline="Beneficios"
+      title="¿Por qué elegir nuestra propuesta?"
+      subtitle="Ventajas competitivas que hacen de nuestra propuesta la mejor opción para Rally Maya México"
+      items={[
+        {
+          title: 'Experiencia en Eventos Deportivos',
+          description: 'Especialización en desarrollo web para eventos automovilísticos y deportivos de alto nivel.',
+          icon: 'tabler:trophy',
+        },
+        {
+          title: 'Metodología Agile',
+          description: 'Desarrollo iterativo con entregas parciales y feedback continuo del cliente.',
+          icon: 'tabler:arrows-right-left',
+        },
+        {
+          title: 'Soporte Técnico Completo',
+          description: 'Mantenimiento y soporte técnico incluido durante los primeros 6 meses.',
+          icon: 'tabler:headset',
+        },
+        {
+          title: 'Performance Garantizada',
+          description: 'Optimización para carga rápida y excelente experiencia de usuario en todos los dispositivos.',
+          icon: 'tabler:device-analytics',
+        },
+        {
+          title: 'Escalabilidad',
+          description: 'Arquitectura preparada para crecimiento futuro y nuevas funcionalidades.',
+          icon: 'tabler:trending-up',
+        },
+        {
+          title: 'Entrega a Tiempo',
+          description: 'Compromiso con los plazos establecidos y comunicación transparente durante todo el proceso.',
+          icon: 'tabler:clock',
+        },
+      ]}
+    />
+  </section>
 
-  <Features2
-    title="Tecnologías y Servicios Incluidos"
-    subtitle="Stack tecnológico moderno para garantizar un sitio web de alto rendimiento"
-    tagline="Tecnología"
-    items={[
-      {
-        title: 'Desarrollo Frontend Moderno',
-        description: "React.js/Next.js con TypeScript para desarrollo robusto y mantenible.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Backend y API',
-        description: "Node.js con base de datos PostgreSQL para gestión segura de datos.",
-        icon: 'flat-color-icons:database',
-      },
-      {
-        title: 'Sistema de Pagos',
-        description: "Integración con Stripe/PayPal para procesamiento seguro de pagos en línea.",
-        icon: 'flat-color-icons:money-transfer',
-      },
-      {
-        title: 'CMS Personalizado',
-        description: "Strapi CMS para gestión fácil de contenidos y actualizaciones.",
-        icon: 'flat-color-icons:gallery',
-      },
-      {
-        title: 'Hosting Premium',
-        description: "AWS/Vercel con CDN global para máximo rendimiento.",
-        icon: 'flat-color-icons:data-backup',
-      },
-      {
-        title: 'SEO y Analytics',
-        description: "Optimización SEO completa y configuración de Google Analytics.",
-        icon: 'flat-color-icons:timeline',
-      },
-    ]}
-  />
+  <!-- Timeline del Proyecto ********* -->
+  <section id="timeline">
+    <Content
+      isReversed
+      tagline="Timeline"
+      title="Cronograma de Desarrollo"
+      items={[
+        {
+          title: 'Semanas 1-2: Diseño y UX/UI',
+          description: 'Wireframes, mockups y diseño visual completo.',
+        },
+        {
+          title: 'Semanas 3-6: Desarrollo Core',
+          description: 'Desarrollo de la estructura principal del sitio web.',
+        },
+        {
+          title: 'Semanas 7-9: Funcionalidades Avanzadas',
+          description: 'Sistema de registro, pagos y área privada.',
+        },
+        {
+          title: 'Semanas 10-12: Testing y Launch',
+          description: 'Pruebas completas, optimización y puesta en producción.',
+        },
+      ]}
+      image={{
+        src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+        alt: 'Timeline image',
+      }}
+    >
+      <Fragment slot="content">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+          12 Semanas de Desarrollo
+        </h3>
+        <p>
+          Plan detallado con hitos claros y entregas parciales para mantener al cliente informado
+          del progreso en cada etapa del desarrollo.
+        </p>
+      </Fragment>
+    </Content>
+  </section>
 
-  <!-- HighlightedPosts Widget ******* -->
+  <!-- Call to Action **************** -->
+  <section id="cta">
+    <CallToAction
+      title="¿Listo para comenzar?"
+      subtitle="Transformemos la visión del Rally Maya México en una plataforma web excepcional."
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Aceptar Propuesta',
+          href: '#contact',
+          icon: 'tabler:check',
+        },
+        {
+          text: 'Programar Reunión',
+          href: 'mailto:juancarlos@elitekode.com',
+          icon: 'tabler:calendar',
+        },
+      ]}
+    />
+  </section>
 
-  <BlogLatestPosts
-    title="Recursos y Actualizaciones"
-    information={`Mantente informado sobre las mejores prácticas en desarrollo web y las últimas tendencias tecnológicas.
-                `}
-  />
-
-  <!-- FAQs Widget ******************* -->
-
-  <FAQs
-    title="Preguntas Frecuentes sobre el Proyecto"
-    subtitle="Respuestas a las consultas más comunes sobre el desarrollo del sitio web Rally Maya México."
-    tagline="FAQs"
-    classes={{ container: 'max-w-6xl' }}
-    items={[
-      {
-        title: '¿Cuánto tiempo tomará el desarrollo completo?',
-        description:
-          "El proyecto completo está estimado en 12 semanas, dividido en 4 fases principales con entregas parciales para revisión y feedback.",
-      },
-      {
-        title: '¿Qué incluye el mantenimiento post-lanzamiento?',
-        description:
-          'Incluye soporte técnico, actualizaciones de seguridad, backup automático y resolución de issues durante los primeros 6 meses.',
-      },
-      {
-        title: '¿El sitio será completamente responsive?',
-        description:
-          "Sí, el sitio estará optimizado para todos los dispositivos (móviles, tablets, desktop) con especial atención a iOS y Android como solicitado.",
-      },
-      {
-        title: '¿Cómo funcionará el sistema de pagos?',
-        description:
-          'Integraremos pasarelas de pago seguras como Stripe o PayPal, cumpliendo con estándares internacionales de seguridad PCI DSS.',
-      },
-      {
-        title: '¿Podrán actualizar el contenido fácilmente?',
-        description:
-          'Sí, implementaremos un CMS intuitivo que permitirá al equipo de Rally Maya actualizar contenido, noticias, galerías y gestionar participantes sin conocimientos técnicos.',
-      },
-      {
-        title: '¿Qué garantías ofrecen?',
-        description:
-          'Ofrecemos garantía de 3 meses en todo el desarrollo, soporte técnico incluido durante 6 meses y compromiso de entrega en los plazos establecidos.',
-      },
-    ]}
-  />
-
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    stats={[
-      { title: 'Años de Experiencia', amount: '8+' },
-      { title: 'Proyectos Completados', amount: '150+' },
-      { title: 'Clientes Satisfechos', amount: '95%' },
-      { title: 'Soporte Técnico', amount: '24/7' },
-    ]}
-  />
-
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Ver Propuesta Completa',
-        href: '/propuesta',
-        target: '_self',
-        icon: 'tabler:file-text',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Rally Maya México&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">EliteKode</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      ¿Listo para llevar el Rally Maya México al siguiente nivel digital? <br class="hidden md:inline" />Descubre nuestra propuesta completa con calculadora de precios interactiva.
-    </Fragment>
-  </CallToAction>
-</Layout>
+  <!-- Formulario de Contacto ******** -->
+  <section id="contact">
+    <ContactForm
+      title="Contacto"
+      subtitle="¿Tienes preguntas sobre la propuesta? Conversemos."
+      inputs={[
+        {
+          type: 'text',
+          name: 'name',
+          label: 'Nombre',
+        },
+        {
+          type: 'email',
+          name: 'email',
+          label: 'Email',
+        },
+      ]}
+      textarea={{
+        label: 'Mensaje',
+      }}
+      disclaimer={{
+        label: 'Al enviar este formulario, acepto recibir comunicaciones sobre el proyecto Rally Maya México.',
+      }}
+      description="Tiempo de respuesta: menos de 24 horas."
+    />
+  </section>
+</LandingLayout>
