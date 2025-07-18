@@ -1,6 +1,74 @@
+version: '3.8'
+
 services:
-  astrowind:
-    build: .
-    container_name: astrowind
+  # Servicio de desarrollo
+  rally-maya-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: rally-maya-dev
     ports:
-      - 8080:8080
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev -- --host 0.0.0.0
+    profiles:
+      - dev
+
+  # Servicio de producción
+  rally-maya-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: rally-maya-prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    profiles:
+      - prod
+
+  # Servicio de producción con puerto personalizado
+  rally-maya-custom:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: rally-maya-custom
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    profiles:
+      - custom
+
+  # Servicio de desarrollo con hot reload
+  rally-maya-hot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: rally-maya-hot
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/dist
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev -- --host 0.0.0.0 --port 4321
+    profiles:
+      - hot
+
+networks:
+  default:
+    name: rally-maya-network

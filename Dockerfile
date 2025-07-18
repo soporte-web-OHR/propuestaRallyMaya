@@ -1,17 +1,44 @@
-FROM node:lts AS base
+# Dockerfile para Rally Maya México - Propuesta Web
+FROM node:20-alpine AS base
+
+# Instalar dependencias necesarias
+RUN apk add --no-cache libc6-compat
+
+# Establecer directorio de trabajo
 WORKDIR /app
 
-FROM base AS deps
+# Copiar archivos de configuración
 COPY package*.json ./
-RUN npm install
+COPY astro.config.ts ./
+COPY tailwind.config.js ./
+COPY tsconfig.json ./
 
-FROM base AS build
-COPY --from=deps /app/node_modules ./node_modules
+# Instalar dependencias
+RUN npm ci --only=production
+
+# Etapa de construcción
+FROM base AS builder
+
+# Instalar todas las dependencias (incluyendo devDependencies)
+RUN npm ci
+
+# Copiar código fuente
 COPY . .
+
+# Construir la aplicación
 RUN npm run build
 
-FROM nginx:stable-alpine AS deploy
-COPY --from=build /app/dist /usr/share/nginx/html
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+# Etapa de producción
+FROM nginx:alpine AS production
 
-EXPOSE 8080
+# Copiar archivos construidos
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Copiar configuración personalizada de nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Exponer puerto
+EXPOSE 80
+
+# Comando por defecto
+CMD ["nginx", "-g", "daemon off;"]
