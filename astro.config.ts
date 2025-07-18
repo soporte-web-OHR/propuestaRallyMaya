@@ -25,6 +25,10 @@ export default defineConfig({
   output: 'static',
   site: 'https://soporte-web-ohr.github.io',
   base: '/propuestaRallyMaya',
+  trailingSlash: 'ignore',
+  build: {
+    assets: 'assets'
+  },
 
   integrations: [
     tailwind({
