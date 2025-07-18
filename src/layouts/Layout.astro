@@ -35,6 +35,19 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    
+    <!-- GitHub Pages fix for CSS loading -->
+    <script is:inline>
+      // Ensure base URL is correct for GitHub Pages
+      if (typeof window !== 'undefined') {
+        const base = document.querySelector('base');
+        if (!base) {
+          const baseEl = document.createElement('base');
+          baseEl.href = '/propuestaRallyMaya/';
+          document.head.appendChild(baseEl);
+        }
+      }
+    </script>
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
