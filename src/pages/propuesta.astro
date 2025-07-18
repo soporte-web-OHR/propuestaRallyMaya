@@ -8,7 +8,7 @@ import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import ContactForm from '~/components/widgets/Contact.astro';
-import PricingCalculator from '~/components/widgets/PricingCalculator.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
 
 const metadata = {
   title: 'Propuesta Desarrollo Web - Rally Maya México | EliteKode',
@@ -183,8 +183,109 @@ const metadata = {
     ]}
   />
 
-  <!-- Calculadora de Precios ******** -->
-  <PricingCalculator />
+  <!-- Presupuesto ******************* -->
+  <Pricing
+    id="pricing"
+    title="Presupuesto del Proyecto"
+    subtitle="Estructura de precios por fases de desarrollo"
+    prices={[
+      {
+        title: 'Fase 1: Diseño y UX/UI',
+        subtitle: 'Wireframes, mockups y diseño visual completo',
+        price: 2500,
+        period: '2 semanas',
+        items: [
+          { description: 'Análisis de requerimientos UX' },
+          { description: 'Wireframes de todas las páginas' },
+          { description: 'Diseño visual completo' },
+          { description: 'Guía de estilos' },
+          { description: 'Prototipo interactivo' },
+          { description: 'Integración identidad Rally Maya' },
+        ],
+        callToAction: {
+          target: '_blank',
+          text: 'Solicitar Fase 1',
+          href: 'mailto:juancarlos@elitekode.com?subject=Fase 1 - Rally Maya México',
+        },
+      },
+      {
+        title: 'Fase 2: Desarrollo Frontend',
+        subtitle: 'Desarrollo completo responsive multiidioma',
+        price: 4500,
+        period: '4 semanas',
+        items: [
+          { description: 'Desarrollo responsive completo' },
+          { description: 'Implementación multiidioma (ES/EN)' },
+          { description: 'Todas las secciones del mapa' },
+          { description: 'Optimización SEO técnica' },
+          { description: 'Integración redes sociales' },
+          { description: 'Galería multimedia' },
+          { description: 'Performance optimization' },
+        ],
+        callToAction: {
+          target: '_blank',
+          text: 'Solicitar Fase 2',
+          href: 'mailto:juancarlos@elitekode.com?subject=Fase 2 - Rally Maya México',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'Popular',
+      },
+      {
+        title: 'Fase 3: Funcionalidades Avanzadas',
+        subtitle: 'Sistema de registro, pagos y área privada',
+        price: 5500,
+        period: '3 semanas',
+        items: [
+          { description: 'Sistema registro automatizado' },
+          { description: 'Integración pagos en línea' },
+          { description: 'Área privada de usuarios' },
+          { description: 'CMS gestión contenidos' },
+          { description: 'Panel de administración' },
+          { description: 'Gestión de participantes' },
+          { description: 'Sistema de notificaciones' },
+        ],
+        callToAction: {
+          target: '_blank',
+          text: 'Solicitar Fase 3',
+          href: 'mailto:juancarlos@elitekode.com?subject=Fase 3 - Rally Maya México',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'Completo',
+      },
+    ]}
+  />
+
+  <!-- Presupuesto Total ************* -->
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'Fase 4: Testing y Lanzamiento - $2,000 USD',
+        description: 'Testing completo, optimización y puesta en producción (3 semanas).',
+      },
+      {
+        title: 'Total del Proyecto Completo: $14,500 USD',
+        description: 'Duración total estimada: 12 semanas de desarrollo.',
+      },
+      {
+        title: 'Servicios Adicionales Disponibles',
+        description: 'Mantenimiento 6 meses (+$1,200), Hosting Premium (+$800), Analytics Setup (+$500).',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Inversión Total del Proyecto
+      </h3>
+      <p class="text-lg">
+        El desarrollo completo del sitio web Rally Maya México con todas las funcionalidades requeridas tiene una inversión total de <span class="font-bold text-primary">$14,500 USD</span> y se completará en 12 semanas.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-green-50 dark:bg-slate-800"></div>
+    </Fragment>
+  </Content>
 
   <!-- Beneficios del Proyecto ******* -->
   <Features
